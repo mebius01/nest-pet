@@ -12,7 +12,6 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       ...this.config.get('database.postgres'),
       entities: [__dirname + '/components/**/*.entity{.ts,.js}'],
       migrations: ['dist/migrations/*.js'],
-      // migrationsDir: ['src/database/migrations/'],
       migrationsRun: false,
       logger: 'file',
       // synchronize: true, // never use TRUE in production!
