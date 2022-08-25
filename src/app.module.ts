@@ -13,7 +13,7 @@ import { BooksModule } from './components/books/books.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
-    //TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     UsersModule,
     CategoriesModule,
     AuthorsModule,

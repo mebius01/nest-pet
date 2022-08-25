@@ -8,11 +8,11 @@ export class AuthorsService {
     return 'This action adds a new author';
   }
 
-  findAll() {
+  list() {
     return `This action returns all authors`;
   }
 
-  findOne(id: number) {
+  get(id: number) {
     return `This action returns a #${id} author`;
   }
 

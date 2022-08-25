@@ -8,11 +8,11 @@ export class CategoriesService {
     return 'This action adds a new category';
   }
 
-  findAll() {
+  list() {
     return `This action returns all categories`;
   }
 
-  findOne(id: number) {
+  get(id: number) {
     return `This action returns a #${id} category`;
   }
 
