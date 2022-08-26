@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PingController } from './app.controller';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { ormConfig } from 'config/typeorm.config';
+import { UsersModule } from './components/users/users.module';
+import { BooksModule } from './components/books/books.module';
 
 @Module({
   imports: [
@@ -14,6 +16,8 @@ import { ormConfig } from 'config/typeorm.config';
         ...ormConfig,
       }),
     }),
+    UsersModule,
+    BooksModule,
   ],
   controllers: [PingController],
   providers: [],
