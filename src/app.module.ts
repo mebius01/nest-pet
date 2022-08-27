@@ -4,16 +4,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PingController } from './app.controller';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { ormConfig } from 'config/typeorm.config';
+import { UsersModule } from './components/users/users.module';
+import { BooksModule } from './components/books/books.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ envFilePath: 'config/.env', isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: 'postgres',
         ...ormConfig,
       }),
     }),
+    UsersModule,
+    BooksModule,
   ],
   controllers: [PingController],
   providers: [],

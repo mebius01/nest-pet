@@ -9,7 +9,7 @@ export const ormConfig = {
   password: process.env.TYPEORM_PASSWORD || '1234',
   synchronize: false,
   logging: false,
-  entities: ['src/components/**/entities/*.entity.ts'],
+  entities: ['dist/src/components/**/entities/*.entity{.ts,.js}'],
   migrations: ['dist/src/db/migrations/*{.ts,.js}'],
   subscribers: [],
 };
