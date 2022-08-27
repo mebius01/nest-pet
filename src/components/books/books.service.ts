@@ -8,11 +8,11 @@ export class BooksService {
     return 'This action adds a new book';
   }
 
-  findAll() {
+  list() {
     return `This action returns all books`;
   }
 
-  findOne(id: number) {
+  get(id: number) {
     return `This action returns a #${id} book`;
   }
 

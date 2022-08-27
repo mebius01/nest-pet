@@ -21,11 +21,11 @@ export class UsersService {
     return this.repository.save(user);
   }
 
-  findAll(): Promise<User[]> {
+  list(): Promise<User[]> {
     return this.repository.find();
   }
 
-  findOne(id: number): Promise<User> {
+  get(id: number): Promise<User> {
     return this.repository.findOneBy({ id });
   }
 
