@@ -9,7 +9,7 @@ import { BooksModule } from './components/books/books.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ envFilePath: 'config/.env', isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: 'postgres',
