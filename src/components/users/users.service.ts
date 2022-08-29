@@ -1,14 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(
-    @InjectRepository(User)
+    @Inject('USER_REPOSITORY')
     private repository: Repository<User>,
   ) {}
 
@@ -21,12 +20,12 @@ export class UsersService {
     return this.repository.save(user);
   }
 
-  list(): Promise<User[]> {
-    return this.repository.find();
-  }
-
   get(id: number): Promise<User> {
     return this.repository.findOneBy({ id });
+  }
+
+  list(): Promise<User[]> {
+    return this.repository.find();
   }
 
   async update(id: number, body: UpdateUserDto): Promise<User> {

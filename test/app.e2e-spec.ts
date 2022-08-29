@@ -5,6 +5,7 @@ import { AppModule } from './../src/app.module';
 
 describe('PingController (e2e)', () => {
   let app: INestApplication;
+  const version = process.env.npm_package_version;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -15,10 +16,10 @@ describe('PingController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/ping (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .get('/ping')
       .expect(200)
-      .expect('Hello World!');
+      .expect({ version });
   });
 });
