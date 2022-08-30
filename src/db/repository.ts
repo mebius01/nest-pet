@@ -1,3 +1,4 @@
+import { Book } from 'src/components/books/entities/book.entity';
 import { User } from 'src/components/users/entities/user.entity';
 import { DataSource } from 'typeorm';
 
@@ -11,5 +12,5 @@ const createRepository = (entity: any, nameProvide: string) => {
   ];
 };
 
-// export const photoProviders = createRepository(Photo, 'PHOTO_REPOSITORY');
-export const userProviders = createRepository(User, 'USER_REPOSITORY');
+export const booksProviders = createRepository(Book, 'BOOK_REPOSITORY');
+export const usersProviders = createRepository(User, 'USER_REPOSITORY');
