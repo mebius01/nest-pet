@@ -1,12 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
 
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
-
+@Controller('ping')
+export class PingController {
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  get() {
+    const version = process.env.npm_package_version;
+    return { version };
   }
 }
