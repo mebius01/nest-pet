@@ -20,7 +20,7 @@ export class BooksService {
     return this.repository.save(book);
   }
 
-  get(id: string): Promise<Book> {
+  get(id: string & number): Promise<Book> {
     return this.repository.findOneBy({ id });
   }
 

@@ -26,7 +26,7 @@ export class BooksController {
   }
 
   @Get(':id')
-  get(@Param('id') id: string) {
+  get(@Param('id') id: string & number) {
     return this.service.get(id);
   }
 
