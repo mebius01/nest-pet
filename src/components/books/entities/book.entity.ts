@@ -8,6 +8,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Category } from 'src/components/categories/entities/categories.entity';
 
 @Entity()
 export class Book {
@@ -26,4 +27,8 @@ export class Book {
   @ManyToMany(() => Author)
   @JoinTable()
   authors: Author[];
+
+  @ManyToMany(() => Category)
+  @JoinTable()
+  categories: Category[];
 }
