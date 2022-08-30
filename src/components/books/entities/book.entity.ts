@@ -1,5 +1,13 @@
 import { User } from 'src/components/users/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Author } from 'src/components/authors/entities/author.entity';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Book {
@@ -12,6 +20,10 @@ export class Book {
   @Column({ type: 'text' })
   description: string;
 
-  @ManyToOne((type) => User, (user) => user.books)
+  @ManyToOne(() => User, (user) => user.books)
   user: User;
+
+  @ManyToMany(() => Author)
+  @JoinTable()
+  authors: Author[];
 }
