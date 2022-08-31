@@ -1,3 +1,4 @@
+import { Auth } from 'src/components/auth/entities/auth.entity';
 import { Author } from 'src/components/authors/entities/author.entity';
 import { Book } from 'src/components/books/entities/book.entity';
 import { Category } from 'src/components/categories/entities/categories.entity';
@@ -21,3 +22,4 @@ export const categoriesProviders = createRepository(
   Category,
   'CATEGORY_REPOSITORY',
 );
+export const authProviders = createRepository(Auth, 'AUTH_REPOSITORY');

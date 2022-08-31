@@ -6,6 +6,7 @@ import { UserModule } from './components/users/users.module';
 import { BooksModule } from './components/books/books.module';
 import { AuthorsModule } from './components/authors/authors.module';
 import { CategoryModule } from './components/categories/categories.module';
+import { AuthModule } from './components/auth/auth.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { CategoryModule } from './components/categories/categories.module';
     BooksModule,
     AuthorsModule,
     CategoryModule,
+    AuthModule
   ],
   controllers: [PingController],
   providers: [],
