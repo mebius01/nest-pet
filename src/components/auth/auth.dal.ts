@@ -1,8 +1,8 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { User } from '../users/entities/user.entity';
-import { CreateAuthDto, RegistrationAuthDto } from './auth.dto';
+import { CreateAuthDto } from './auth.dto';
 import { Auth } from './entities/auth.entity';
 import { getUserAuth } from './sql/get-auth-user';
 
