@@ -1,6 +1,15 @@
-import { Controller, Post, Body, Patch, HttpCode } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Patch,
+  UseGuards,
+  Request,
+  HttpCode,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegistrationAuthDto } from './auth.dto';
+import { LocalAuthGuard } from 'src/guards/local.auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -11,14 +20,17 @@ export class AuthController {
     return this.service.registration(body);
   }
 
+  @UseGuards(LocalAuthGuard)
   @Post('login')
-  @HttpCode(204)
   login(@Body() body: RegistrationAuthDto) {
     return this.service.login(body);
   }
 
   @Patch('logout')
-  logout() {
-    return this.service.logout();
+  @HttpCode(204)
+  logout(@Request() req): any {
+    req.logout((error) => {
+      if (error) req.session.destroy();
+    });
   }
 }

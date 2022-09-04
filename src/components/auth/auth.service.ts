@@ -14,7 +14,7 @@ export class AuthService {
   async registration(body: RegistrationAuthDto) {
     const user: CreateUserDto = new User();
 
-    user.id = ID('US')
+    user.id = ID('US');
     user.email = body.email;
     user.name = body.email.split('@')[0];
 
@@ -24,7 +24,6 @@ export class AuthService {
     auth.password_hash = hash;
     auth.user = user;
 
-    //! --- create session ---
     return this.dal.registration(user, auth);
   }
 
@@ -34,8 +33,8 @@ export class AuthService {
     const hash = await bcrypt.compare(body.password, init.password_hash);
     if (!hash) throw new UnauthorizedException();
 
-    //! --- create session ---
-    return 'Ok';
+    const { password_hash, ...user } = init;
+    return user;
   }
 
   logout() {

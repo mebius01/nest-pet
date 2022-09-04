@@ -11,15 +11,6 @@ export class UserService {
     private repository: Repository<User>,
   ) {}
 
-  create(body: CreateUserDto): Promise<User> {
-    const user: CreateUserDto = new User();
-
-    user.name = body.name;
-    user.email = body.email;
-
-    return this.repository.save(user);
-  }
-
   get(id: string): Promise<User> {
     return this.repository.findOneBy({ id });
   }
