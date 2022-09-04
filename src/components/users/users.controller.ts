@@ -6,19 +6,17 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthenticatedGuard } from 'src/guards/authenticated.guard';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './users.service';
 
 @Controller('users')
+@UseGuards(AuthenticatedGuard)
 export class UserController {
   constructor(private readonly service: UserService) {}
-
-  @Post()
-  create(@Body() body: CreateUserDto) {
-    return this.service.create(body);
-  }
 
   @Get()
   list() {
