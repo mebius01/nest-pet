@@ -1,3 +1,4 @@
+import { ID } from './../../utilities/id';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { User } from '../users/entities/user.entity';
@@ -12,6 +13,8 @@ export class AuthService {
 
   async registration(body: RegistrationAuthDto) {
     const user: CreateUserDto = new User();
+
+    user.id = ID('US')
     user.email = body.email;
     user.name = body.email.split('@')[0];
 
