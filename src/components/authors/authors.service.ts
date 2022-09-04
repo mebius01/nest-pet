@@ -1,53 +1,35 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { CreateAuthorDto } from './dto/create-author.dto';
-import { UpdateAuthorDto } from './dto/update-author.dto';
+import { CreateAuthorDto, UpdateAuthorDto } from './authors.dto';
+import { AuthorsDal } from './authors.dal';
+import { Injectable } from '@nestjs/common';
 import { Author } from './entities/author.entity';
 
 @Injectable()
 export class AuthorsService {
-  constructor(
-    @Inject('AUTHOR_REPOSITORY')
-    private repository: Repository<Author>,
-  ) {}
+  constructor(private readonly dal: AuthorsDal) {}
 
   create(body: CreateAuthorDto): Promise<Author> {
     const author: CreateAuthorDto = new Author();
     author.name = body.name;
-    return this.repository.save(author);
+    return this.dal.create(author);
   }
 
   list(): Promise<Author[]> {
-    return this.repository.find();
+    return this.dal.list();
   }
 
   get(id: string): Promise<Author> {
-    return this.repository.findOneBy({ id });
+    return this.dal.get(id);
   }
 
   async update(id: string, body: UpdateAuthorDto): Promise<Author> {
     const author: Author = new Author();
     author.name = body.name;
-    const result = await this.repository
-      .createQueryBuilder()
-      .update({
-        ...author,
-      })
-      .where({
-        id,
-      })
-      .returning('*')
-      .execute();
-    return result.raw[0];
+    const data = await this.dal.update(id, author);
+    return data;
   }
 
   async remove(id: string): Promise<Author> {
-    const result = await this.repository
-      .createQueryBuilder()
-      .delete()
-      .where({ id })
-      .returning('*')
-      .execute();
-    return result.raw[0];
+    const data = await this.dal.remove(id);
+    return data;
   }
 }

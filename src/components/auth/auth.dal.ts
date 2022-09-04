@@ -26,8 +26,4 @@ export class AuthDal {
     const data = await this.userRepository.query(getUserAuth, [email]);
     return data[0];
   }
-
-  logout() {
-    return `This action logout`;
-  }
 }

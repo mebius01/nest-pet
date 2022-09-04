@@ -1,59 +1,31 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+import { Injectable } from '@nestjs/common';
+import { CategoryDal } from './categories.dal';
+import { CreateCategoryDto, UpdateCategoryDto } from './categories.dto';
 import { Category } from './entities/categories.entity';
 
 @Injectable()
 export class CategoryService {
-  constructor(
-    @Inject('CATEGORY_REPOSITORY')
-    private repository: Repository<Category>,
-  ) {}
+  constructor(private readonly dal: CategoryDal) {}
 
-  create(body: CreateCategoryDto): Promise<Category> {
-    const category: CreateCategoryDto = new Category();
-
-    category.name = body.name;
-    category.description = body.description;
-
-    return this.repository.save(category);
+  create(category: CreateCategoryDto): Promise<Category> {
+    return this.dal.create(category);
   }
 
   get(id: string): Promise<Category> {
-    return this.repository.findOneBy({ id });
+    return this.dal.get(id);
   }
 
   list(): Promise<Category[]> {
-    return this.repository.find();
+    return this.dal.list();
   }
 
-  async update(id: string, body: UpdateCategoryDto): Promise<Category> {
-    const category: Category = new Category();
-
-    category.name = body.name;
-    category.description = body.description;
-
-    const result = await this.repository
-      .createQueryBuilder()
-      .update({
-        ...category,
-      })
-      .where({
-        id,
-      })
-      .returning('*')
-      .execute();
-    return result.raw[0];
+  async update(id: string, category: UpdateCategoryDto): Promise<Category> {
+    const data = await this.dal.update(id, category);
+    return data;
   }
 
   async remove(id: string): Promise<Category> {
-    const result = await this.repository
-      .createQueryBuilder()
-      .delete()
-      .where({ id })
-      .returning('*')
-      .execute();
-    return result.raw[0];
+    const data = await this.dal.remove(id);
+    return data;
   }
 }
