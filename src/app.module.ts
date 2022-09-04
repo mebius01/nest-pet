@@ -3,19 +3,20 @@ import { ConfigModule } from '@nestjs/config';
 import { PingController } from './app.controller';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { UserModule } from './components/users/users.module';
+import { AuthModule } from './components/auth/auth.module';
 import { BooksModule } from './components/books/books.module';
 import { AuthorsModule } from './components/authors/authors.module';
 import { CategoryModule } from './components/categories/categories.module';
-import { AuthModule } from './components/auth/auth.module';
+
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     UserModule,
+    AuthModule,
     BooksModule,
     AuthorsModule,
     CategoryModule,
-    AuthModule
   ],
   controllers: [PingController],
   providers: [],

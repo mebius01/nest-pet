@@ -20,7 +20,7 @@ export class CategoryService {
     return this.repository.save(category);
   }
 
-  get(id: number): Promise<Category> {
+  get(id: string): Promise<Category> {
     return this.repository.findOneBy({ id });
   }
 
@@ -28,7 +28,7 @@ export class CategoryService {
     return this.repository.find();
   }
 
-  async update(id: number, body: UpdateCategoryDto): Promise<Category> {
+  async update(id: string, body: UpdateCategoryDto): Promise<Category> {
     const category: Category = new Category();
 
     category.name = body.name;
@@ -47,7 +47,7 @@ export class CategoryService {
     return result.raw[0];
   }
 
-  async remove(id: number): Promise<Category> {
+  async remove(id: string): Promise<Category> {
     const result = await this.repository
       .createQueryBuilder()
       .delete()

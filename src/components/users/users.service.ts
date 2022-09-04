@@ -20,7 +20,7 @@ export class UserService {
     return this.repository.save(user);
   }
 
-  get(id: number): Promise<User> {
+  get(id: string): Promise<User> {
     return this.repository.findOneBy({ id });
   }
 
@@ -28,7 +28,7 @@ export class UserService {
     return this.repository.find();
   }
 
-  async update(id: number, body: UpdateUserDto): Promise<User> {
+  async update(id: string, body: UpdateUserDto): Promise<User> {
     const user: User = new User();
     user.name = body.name;
     const result = await this.repository
@@ -44,7 +44,7 @@ export class UserService {
     return result.raw[0];
   }
 
-  async remove(id: number): Promise<User> {
+  async remove(id: string): Promise<User> {
     const result = await this.repository
       .createQueryBuilder()
       .delete()

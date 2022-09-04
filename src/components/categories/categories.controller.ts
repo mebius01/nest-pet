@@ -27,16 +27,16 @@ export class CategoryController {
 
   @Get(':id')
   get(@Param('id') id: string) {
-    return this.service.get(+id);
+    return this.service.get(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() body: UpdateCategoryDto) {
-    return this.service.update(+id, body);
+    return this.service.update(id, body);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.service.remove(+id);
+    return this.service.remove(id);
   }
 }
