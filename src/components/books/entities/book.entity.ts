@@ -15,10 +15,10 @@ export class Book {
   @PrimaryColumn()
   id: string;
 
-  @Column({ type: 'varchar', length: 120, unique: true, nullable: true })
+  @Column({ type: 'varchar', length: 120, unique: true })
   name!: string;
 
-  @Column({ type: 'text', nullable: false })
+  @Column({ type: 'text', nullable: true })
   description: string;
 
   @ManyToOne(() => User, (user) => user.books)

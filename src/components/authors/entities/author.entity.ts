@@ -5,6 +5,6 @@ export class Author {
   @PrimaryColumn()
   id: string;
 
-  @Column({ type: 'varchar', length: 120, unique: true, nullable: true })
+  @Column({ type: 'varchar', length: 120, unique: true})
   name!: string;
 }
