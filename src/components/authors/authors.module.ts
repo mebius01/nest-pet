@@ -3,10 +3,11 @@ import { AuthorsService } from './authors.service';
 import { AuthorsController } from './authors.controller';
 import { authorsRepository } from 'src/db/repository';
 import { DatabaseModule } from 'src/db/db.module';
+import { AuthorsDal } from './authors.dal';
 
 @Module({
   imports: [DatabaseModule],
   controllers: [AuthorsController],
-  providers: [...authorsRepository, AuthorsService],
+  providers: [...authorsRepository, AuthorsService, AuthorsDal],
 })
 export class AuthorsModule {}

@@ -24,11 +24,11 @@ export class Book {
   @ManyToOne(() => User, (user) => user.books)
   user: User;
 
-  @ManyToMany(() => Author)
+  @ManyToMany(() => Author, { cascade: true })
   @JoinTable()
   authors: Author[];
 
-  @ManyToMany(() => Category)
+  @ManyToMany(() => Category, { cascade: true })
   @JoinTable()
   categories: Category[];
 }

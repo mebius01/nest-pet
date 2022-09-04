@@ -6,12 +6,12 @@ export class User {
   @PrimaryColumn()
   id: string;
 
-  @Column({ type: 'varchar', length: 120, unique: true, nullable: true })
+  @Column({ type: 'varchar', length: 120, nullable: true })
   name!: string;
 
-  @Column({ type: 'varchar', length: 120, nullable: true })
+  @Column({ type: 'varchar', length: 120, unique: true, nullable: true })
   email!: string;
 
-  @OneToMany(() => Book, (book) => book.user)
+  @OneToMany(() => Book, (book) => book.user, { cascade: true })
   books: Book[];
 }

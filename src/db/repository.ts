@@ -24,4 +24,3 @@ export const categoriesRepository = createRepository(
   Category,
   'CATEGORY_REPOSITORY',
 );
-

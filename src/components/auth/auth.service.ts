@@ -36,8 +36,4 @@ export class AuthService {
     const { password_hash, ...user } = init;
     return user;
   }
-
-  logout() {
-    return this.logout();
-  }
 }
