@@ -23,7 +23,7 @@
     "migration:generate": "npm run build && typeorm-ts-node-commonjs migration:generate -d config/data-source.ts",
     "migration:run": "npm run build && typeorm-ts-node-commonjs migration:run -d config/data-source.ts",
     "migration:down": "npm run build && typeorm-ts-node-commonjs migration:revert -d config/data-source.ts",
-    "dc:run": "./scripts/strart.sh"
+    "dc:up": "./scripts/strart.sh"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",

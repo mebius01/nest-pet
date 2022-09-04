@@ -18,7 +18,7 @@ export class Book {
   @Column({ type: 'varchar', length: 120, unique: true, nullable: true })
   name!: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable: false })
   description: string;
 
   @ManyToOne(() => User, (user) => user.books)
