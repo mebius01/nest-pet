@@ -1,16 +1,16 @@
 import { Book } from 'src/components/books/entities/book.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn()
-  id!: number;
+  @PrimaryColumn()
+  id: string;
 
-  @Column({ type: 'varchar', length: 120 })
-  name: string;
+  @Column({ type: 'varchar', length: 120, unique: true, nullable: true })
+  name!: string;
 
-  @Column({ type: 'varchar', length: 120 })
-  email: string;
+  @Column({ type: 'varchar', length: 120, nullable: true })
+  email!: string;
 
   @OneToMany(() => Book, (book) => book.user)
   books: Book[];

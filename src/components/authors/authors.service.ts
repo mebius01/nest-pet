@@ -21,11 +21,11 @@ export class AuthorsService {
     return this.repository.find();
   }
 
-  get(id: number): Promise<Author> {
+  get(id: string): Promise<Author> {
     return this.repository.findOneBy({ id });
   }
 
-  async update(id: number, body: UpdateAuthorDto): Promise<Author> {
+  async update(id: string, body: UpdateAuthorDto): Promise<Author> {
     const author: Author = new Author();
     author.name = body.name;
     const result = await this.repository
@@ -41,7 +41,7 @@ export class AuthorsService {
     return result.raw[0];
   }
 
-  async remove(id: number): Promise<Author> {
+  async remove(id: string): Promise<Author> {
     const result = await this.repository
       .createQueryBuilder()
       .delete()

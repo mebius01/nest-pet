@@ -27,16 +27,16 @@ export class AuthorsController {
 
   @Get(':id')
   get(@Param('id') id: string) {
-    return this.service.get(+id);
+    return this.service.get(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAuthorDto: UpdateAuthorDto) {
-    return this.service.update(+id, updateAuthorDto);
+    return this.service.update(id, updateAuthorDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.service.remove(+id);
+    return this.service.remove(id);
   }
 }

@@ -1,12 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('categories')
 export class Category {
-  @PrimaryGeneratedColumn()
-  id!: number;
+  @PrimaryColumn()
+  id!: string;
 
-  @Column()
-  name: string;
+  @Column({ type: 'varchar', length: 120, unique: true, nullable: true })
+  name!: string;
 
   @Column({ type: 'text' })
   description: string;

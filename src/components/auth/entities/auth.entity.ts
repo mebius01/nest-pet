@@ -12,7 +12,7 @@ export class Auth {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: true })
   password_hash: string;
 
   @OneToOne(() => User)

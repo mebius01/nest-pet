@@ -1,22 +1,22 @@
 import { User } from 'src/components/users/entities/user.entity';
 import { Author } from 'src/components/authors/entities/author.entity';
+import { Category } from 'src/components/categories/entities/categories.entity';
 import {
   Column,
   Entity,
   JoinTable,
   ManyToMany,
   ManyToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
 } from 'typeorm';
-import { Category } from 'src/components/categories/entities/categories.entity';
 
 @Entity()
 export class Book {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id: string;
 
-  @Column()
-  name: string;
+  @Column({ type: 'varchar', length: 120, unique: true, nullable: true })
+  name!: string;
 
   @Column({ type: 'text' })
   description: string;
