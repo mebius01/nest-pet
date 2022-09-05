@@ -5,10 +5,12 @@ import {
   Get,
   Param,
   Patch,
+  Request,
   UseGuards,
 } from '@nestjs/common';
+import { Role, Roles } from 'src/decorators/decorator.rols';
 import { AuthenticatedGuard } from 'src/guards/authenticated.guard';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserDto } from './users.dto';
 import { UserService } from './users.service';
 
 @Controller('users')
@@ -17,13 +19,17 @@ export class UserController {
 
   //! --- admin ---
   @Get()
+  @Roles(Role.Admin)
   list() {
     return this.service.list();
   }
 
   @Get(':id')
   @UseGuards(AuthenticatedGuard)
-  get(@Param('id') id: string) {
+  @Roles(Role.User)
+  get(@Request() req: any, @Param('id') id: string) {
+    const user = req.user;
+    console.log(user);
     return this.service.get(id);
   }
 

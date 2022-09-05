@@ -9,8 +9,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity('rols')
-export class Rols {
+@Entity('users_rols')
+export class UsersRols {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -29,9 +29,9 @@ export class User {
   @Column({ type: 'varchar', length: 120, unique: true })
   email!: string;
 
-  @OneToOne(() => Rols)
+  @OneToOne(() => UsersRols)
   @JoinColumn({ name: 'role_id' })
-  role: Rols;
+  role: UsersRols;
 
   @OneToMany(() => Book, (book) => book.user, { cascade: true })
   books: Book[];

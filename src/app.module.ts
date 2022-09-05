@@ -7,7 +7,8 @@ import { AuthModule } from './components/auth/auth.module';
 import { BooksModule } from './components/books/books.module';
 import { AuthorsModule } from './components/authors/authors.module';
 import { CategoryModule } from './components/categories/categories.module';
-
+import { RolesGuard } from './guards/roles.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { CategoryModule } from './components/categories/categories.module';
     CategoryModule,
   ],
   controllers: [PingController],
-  providers: [],
+  providers: [{ provide: APP_GUARD, useClass: RolesGuard }],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

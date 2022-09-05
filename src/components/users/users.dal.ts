@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Auth } from '../auth/entities/auth.entity';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { UpdateUserDto } from './users.dto';
 
 @Injectable()
 export class UserDal {
@@ -11,7 +10,7 @@ export class UserDal {
     private repository: Repository<User>,
   ) {}
 
-  get(id: string): Promise<User> {
+  async get(id: string): Promise<User> {
     return this.repository.findOneBy({ id });
   }
 
