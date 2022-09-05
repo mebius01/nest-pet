@@ -21,14 +21,14 @@ export class Book {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @ManyToOne(() => User, (user) => user.books)
+  @ManyToOne(() => User, (user) => user.books, { onDelete: 'CASCADE' })
   user: User;
 
-  @ManyToMany(() => Author, { cascade: true })
+  @ManyToMany(() => Author, { onDelete: 'CASCADE' })
   @JoinTable()
   authors: Author[];
 
-  @ManyToMany(() => Category, { cascade: true })
+  @ManyToMany(() => Category, { onDelete: 'CASCADE' })
   @JoinTable()
   categories: Category[];
 }

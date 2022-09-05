@@ -15,7 +15,7 @@ export class Auth {
   @Column({ type: 'varchar' })
   password_hash: string;
 
-  @OneToOne(() => User, { cascade: true })
+  @OneToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn()
   user: User;
 }
