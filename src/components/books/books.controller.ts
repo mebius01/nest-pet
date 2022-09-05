@@ -1,3 +1,4 @@
+import { AuthenticatedGuard } from './../../guards/authenticated.guard';
 import { CreateBookDto, UpdateBookDto } from './books.dto';
 import {
   Controller,
@@ -7,6 +8,7 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
 
@@ -15,6 +17,7 @@ export class BooksController {
   constructor(private readonly service: BooksService) {}
 
   @Post()
+  @UseGuards(AuthenticatedGuard)
   create(@Body() createBookDto: CreateBookDto) {
     return this.service.create(createBookDto);
   }
@@ -30,11 +33,13 @@ export class BooksController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthenticatedGuard)
   update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
     return this.service.update(id, updateBookDto);
   }
 
   @Delete(':id')
+  @UseGuards(AuthenticatedGuard)
   remove(@Param('id') id: string) {
     return this.service.remove(id);
   }
