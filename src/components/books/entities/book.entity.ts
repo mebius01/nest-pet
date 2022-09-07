@@ -1,6 +1,6 @@
-import { User } from 'src/components/users/entities/user.entity';
-import { Author } from 'src/components/authors/entities/author.entity';
-import { Category } from 'src/components/categories/entities/categories.entity';
+import { User } from '../../users/entities/user.entity';
+import { Author } from '../../authors/entities/author.entity';
+import { Category } from '../../categories/entities/categories.entity';
 import {
   Column,
   Entity,
