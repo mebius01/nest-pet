@@ -1,8 +1,8 @@
-import { User, UsersRols } from 'src/components/users/entities/user.entity';
-import { Auth } from 'src/components/auth/entities/auth.entity';
-import { Book } from 'src/components/books/entities/book.entity';
-import { Author } from 'src/components/authors/entities/author.entity';
-import { Category } from 'src/components/categories/entities/categories.entity';
+import { User, UsersRols } from '../components/users/entities/user.entity';
+import { Auth } from '../components/auth/entities/auth.entity';
+import { Book } from '../components/books/entities/book.entity';
+import { Author } from '../components/authors/entities/author.entity';
+import { Category } from '../components/categories/entities/categories.entity';
 
 import { DataSource } from 'typeorm';
 
