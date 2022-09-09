@@ -1,3 +1,4 @@
+import { Repository } from 'typeorm';
 export const authBody = {
   email: 'john_doe@gmail.com',
   password: '123456',

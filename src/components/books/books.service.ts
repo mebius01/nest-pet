@@ -1,7 +1,7 @@
 import { BooksDal } from './books.dal';
 import { Injectable } from '@nestjs/common';
 import { Book } from './entities/book.entity';
-import { ID } from 'src/utilities/id';
+import { ID } from '../../utilities/id';
 import { BookDto, CreateBookDto, UpdateBookDto } from './books.dto';
 
 @Injectable()

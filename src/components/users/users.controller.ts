@@ -27,8 +27,7 @@ export class UserController {
   @Get(':id')
   @UseGuards(AuthenticatedGuard)
   @Roles(Role.User)
-  get(@Request() req: any, @Param('id') id: string) {
-    const user = req.user;
+  get(@Param('id') id: string) {
     return this.service.get(id);
   }
 
