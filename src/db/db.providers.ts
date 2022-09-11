@@ -1,11 +1,10 @@
-import { AppDataSource } from 'config/data-source';
-import { DataSource } from 'typeorm';
+import { AppDataSource } from '../../config/data-source';
 
 export const databaseProviders = [
-	{
-		provide: 'DATA_SOURCE',
-		useFactory: async () => {
-			return AppDataSource.initialize();
-		},
-	},
+  {
+    provide: 'DATA_SOURCE',
+    useFactory: async () => {
+      return AppDataSource.initialize();
+    },
+  },
 ];
