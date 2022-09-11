@@ -1,4 +1,4 @@
-import { Book } from 'src/components/books/entities/book.entity';
+import { Book } from '../../books/entities/book.entity';
 import {
   Column,
   Entity,

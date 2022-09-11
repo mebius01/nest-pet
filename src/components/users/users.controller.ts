@@ -8,8 +8,8 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { Role, Roles } from 'src/decorators/decorator.rols';
-import { AuthenticatedGuard } from 'src/guards/authenticated.guard';
+import { Role, Roles } from '../../decorators/decorator.rols';
+import { AuthenticatedGuard } from '../../guards/authenticated.guard';
 import { UpdateUserDto } from './users.dto';
 import { UserService } from './users.service';
 
@@ -27,9 +27,7 @@ export class UserController {
   @Get(':id')
   @UseGuards(AuthenticatedGuard)
   @Roles(Role.User)
-  get(@Request() req: any, @Param('id') id: string) {
-    const user = req.user;
-    console.log(user);
+  get(@Param('id') id: string) {
     return this.service.get(id);
   }
 
