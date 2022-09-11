@@ -5,38 +5,41 @@ import {
   Get,
   Param,
   Patch,
-  Post,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { Role, Roles } from '../../decorators/decorator.rols';
+import { AuthenticatedGuard } from '../../guards/authenticated.guard';
+import { UpdateUserDto } from './users.dto';
 import { UserService } from './users.service';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly service: UserService) {}
 
-  @Post()
-  create(@Body() body: CreateUserDto) {
-    return this.service.create(body);
-  }
-
+  //! --- admin ---
   @Get()
+  @Roles(Role.Admin)
   list() {
     return this.service.list();
   }
 
   @Get(':id')
+  @UseGuards(AuthenticatedGuard)
+  @Roles(Role.User)
   get(@Param('id') id: string) {
-    return this.service.get(+id);
+    return this.service.get(id);
   }
 
   @Patch(':id')
+  @UseGuards(AuthenticatedGuard)
   update(@Param('id') id: string, @Body() body: UpdateUserDto) {
-    return this.service.update(+id, body);
+    return this.service.update(id, body);
   }
 
   @Delete(':id')
+  @UseGuards(AuthenticatedGuard)
   remove(@Param('id') id: string) {
-    return this.service.remove(+id);
+    return this.service.remove(id);
   }
 }

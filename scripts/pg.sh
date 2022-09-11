@@ -1,1 +1,0 @@
-docker run --rm --name=talker_pg -d -e POSTGRES_USER=user -e POSTGRES_PASS=1234 -e POSTGRES_DB=library_local -e PGDATA=/var/lib/postgresql/data -p 5432:5432 --tmpfs /var/lib/postgresql/data mdillon/postgis && sleep 5;

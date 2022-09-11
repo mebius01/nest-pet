@@ -1,34 +1,34 @@
-import { User } from 'src/components/users/entities/user.entity';
-import { Author } from 'src/components/authors/entities/author.entity';
+import { User } from '../../users/entities/user.entity';
+import { Author } from '../../authors/entities/author.entity';
+import { Category } from '../../categories/entities/categories.entity';
 import {
   Column,
   Entity,
   JoinTable,
   ManyToMany,
   ManyToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
 } from 'typeorm';
-import { Category } from 'src/components/categories/entities/categories.entity';
 
 @Entity()
 export class Book {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id: string;
 
-  @Column()
-  name: string;
+  @Column({ type: 'varchar', length: 120, unique: true })
+  name!: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable: true })
   description: string;
 
-  @ManyToOne(() => User, (user) => user.books)
+  @ManyToOne(() => User, (user) => user.books, { onDelete: 'CASCADE' })
   user: User;
 
-  @ManyToMany(() => Author)
+  @ManyToMany(() => Author, { onDelete: 'CASCADE' })
   @JoinTable()
   authors: Author[];
 
-  @ManyToMany(() => Category)
+  @ManyToMany(() => Category, { onDelete: 'CASCADE' })
   @JoinTable()
   categories: Category[];
 }
